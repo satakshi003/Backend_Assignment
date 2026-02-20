@@ -7,6 +7,7 @@ import generateAccessAndRefreshTokens from "../Helpers/generateAccessAndRefreshT
 import jwt from "jsonwebtoken";
 
 const registerUser = asyncHandler(async (req, res) => {
+  console.log("BODY:", req.body);
   try {
     const {  username, email, password, confirmPassword } = req.body;
   if (
@@ -89,9 +90,9 @@ const loginUser = asyncHandler(async(req, res) => {
   if (!isPasswordValid) {
     throw new ApiError(401, "Invalid password");
   }
-  const {accessToken, refreshToken} = await generateAccessAndRefreshTokens(user.id);
+  const {accessToken, refreshToken} = await generateAccessAndRefreshTokens(user._id);
 
-  const loggedInUser = await User.findById(user.id).select(
+  const loggedInUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
   const options = {
@@ -155,7 +156,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
      process.env.REFRESH_TOKEN_SECRET
    )
  
-   const user = await User.findById(decodedToken?.id)
+   const user = await User.findById(decodedToken?._id)
  
    if(!user){
      throw new ApiError(401, "Invalid Refresh token")
@@ -170,16 +171,16 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
      secure: true
    }
  
-   const {accessToken, newRefreshToken} = await generateAccessAndRefreshTokens(user._id)
+   const {accessToken, refreshToken} = await generateAccessAndRefreshTokens(user._id)
  
    return res
    .status(200)
    .cookie("accessToken", accessToken, options)
-   .cookie("refreshToken", newRefreshToken, options)
+   .cookie("refreshToken", refreshToken, options)
    .json(
      new ApiResponse(
        200,
-       {accessToken, refreshToken:newRefreshToken},
+       {accessToken, refreshToken},
        "Access token refreshed"
      )
    )
