@@ -1,30 +1,3 @@
-# 🚀 Backend Assignment – Scalable REST API
-
-## 📌 Overview
-
-This project is a scalable RESTful API built using **Node.js, Express, and MongoDB**.  
-It implements secure authentication, role-based access control, and CRUD operations for tasks.
-
-The system supports two roles:
-- 👤 User
-- 👑 Admin
-
-Admin users can access all tasks, while regular users can only manage their own tasks.
-
----
-
-## 🛠 Tech Stack
-
-- Node.js
-- Express.js
-- MongoDB (Mongoose)
-- JWT Authentication (Access + Refresh Tokens)
-- bcrypt (Password Hashing)
-- Cookie-based authentication
-- Postman (API Documentation)
-
----
-
 ## 📂 Project Structure
 # 🚀 Backend Assignment – Scalable REST API
 
@@ -54,7 +27,7 @@ Admin users can access all tasks, while regular users can only manage their own 
 ---
 
 ## 📂 Project Structure
-src/
+``src/
 ├── controllers/
 ├── models/
 ├── routes/
@@ -62,7 +35,7 @@ src/
 ├── utils/
 ├── db/
 └── app.js
-
+``
 
 ---
 
@@ -100,7 +73,7 @@ src/
 ---
 
 ## ⚙️ Environment Variables
-
+``
 Create a `.env` file in root:
 PORT=8000
 MONGODB_URI=your_mongodb_connection_string
@@ -108,14 +81,14 @@ ACCESS_TOKEN_SECRET=your_access_secret
 ACCESS_TOKEN_EXPIRY=15m
 REFRESH_TOKEN_SECRET=your_refresh_secret
 REFRESH_TOKEN_EXPIRY=7d
-
+``
 
 ---
 
 ## 🚀 Installation & Setup
 
 ```bash
-git clone <your-backend-repo-url>
+git clone https://github.com/satakshi003/Backend_Assignment
 cd backend
 npm install
 npm run dev
