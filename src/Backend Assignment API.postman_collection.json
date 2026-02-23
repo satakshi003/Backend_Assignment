@@ -1,0 +1,239 @@
+{
+  "info": {
+    "_postman_id": "326d0b31-9683-4a09-a305-f53d1f705297",
+    "name": "Backend Assignment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47214064",
+    "_collection_link": "https://go.postman.co/collection/47214064-326d0b31-9683-4a09-a305-f53d1f705297?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "POST /auth/register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"satakshi\",\r\n  \"email\": \"satakshi@example.com\",\r\n  \"password\": \"123456\",\r\n  \"confirmPassword\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/register",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Registers a new user with hashed password.  \nDefault role is \"user\".  \nReturns user details."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /auth/login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"satakshi@example.com\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Authenticates user.  \nReturns accessToken and refreshToken via httpOnly cookies."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /auth/refresh-token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTk4MDNhNGEzYTMwOWY4YzAxN2ZhMGQiLCJpYXQiOjE3NzE1NzAwOTgsImV4cCI6MTc3MjQzNDA5OH0.2VOENxhqElvl7OEmVg86lSxWwbnmnKkHu7BDu-SoLJw\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/refresh-token",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "refresh-token"
+              ]
+            },
+            "description": "Generates new access token using valid refresh token."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /auth/logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Clears access and refresh tokens from cookies."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /auth/me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/auth/me",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Returns currently authenticated user's data.  \nRequires valid JWT."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Task",
+      "item": [
+        {
+          "name": "POST /tasks",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn Backend\",\r\n  \"description\": \"Testing task module\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/tasks",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "Creates a new task for authenticated user."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/tasks",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "Returns tasks of authenticated user.  \nAdmin users can view all tasks."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /tasks/:taskId",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Learn Backend Properly\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/tasks/69980b16a1c0e5ee72d8f5a1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "tasks",
+                "69980b16a1c0e5ee72d8f5a1"
+              ]
+            },
+            "description": "Updates a task.  \nUser can update own tasks.  \nAdmin can update any task."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /tasks/:taskId",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/tasks/69980b16a1c0e5ee72d8f5a1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "tasks",
+                "69980b16a1c0e5ee72d8f5a1"
+              ]
+            },
+            "description": "Deletes a task.  \nUser can delete own tasks.  \nAdmin can delete any task."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
