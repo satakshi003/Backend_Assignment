@@ -1,4 +1,3 @@
-## 📂 Project Structure
 # 🚀 Backend Assignment – Scalable REST API
 
 ## 📌 Overview
